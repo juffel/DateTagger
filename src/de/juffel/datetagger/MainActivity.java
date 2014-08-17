@@ -1,13 +1,10 @@
 package de.juffel.datetagger;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import de.juffel.datetagger.DateTaggerContract.TagEntry;
-
 
 public class MainActivity extends Activity {
 
@@ -95,28 +91,6 @@ public class MainActivity extends Activity {
     	return db.insert(TagEntry.TABLE_NAME, TagEntry.COLUMN_NAME_CONTENT, values);
     }
 
-    private List<String> getTags() {
-    	String[] columns = { TagEntry.COLUMN_NAME_ID, TagEntry.COLUMN_NAME_CONTENT };
-    	Cursor cursor = db.query(TagEntry.TABLE_NAME,
-    			columns,
-    			null,
-    			null,
-    			null,
-    			null,
-    			null);
-    	
-    	List<String> ret = new ArrayList<String>();
-
-    	cursor.moveToFirst();
-    	// why the hell is there no method for retrieving the whole result set of the query?
-    	while (!cursor.isLast()) {
-    		ret.add(cursor.getString(
-    		    cursor.getColumnIndexOrThrow(TagEntry.COLUMN_NAME_CONTENT)));
-    		cursor.moveToNext();
-    	}
-    	return ret;
-    }
-    
     private String getCurrentDateTimeString() {
     	SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	return iso8601Format.format(new Date());
@@ -147,5 +121,5 @@ public class MainActivity extends Activity {
 //        mDrawerList.setItemChecked(position, true);
 //        setTitle(mPlanetTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
-    }    
+    }
 }
