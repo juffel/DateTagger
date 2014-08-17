@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Notey</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_update_tag_view">Update tags</string>
+    <string name="button_add_tag">Add tag</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_tag_list">TagList</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
