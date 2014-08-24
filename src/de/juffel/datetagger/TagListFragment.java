@@ -3,31 +3,40 @@ package de.juffel.datetagger;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import de.juffel.datetagger.DateTaggerContract.TagEntry;
 
-public class TagListActivity extends Activity {
+public class TagListFragment extends Fragment {
+	
 
 	private List<TagEntry> tagList = new ArrayList<TagEntry>();
     private SQLiteDatabase db;
 
+	/**
+	 * This method gets called when instantiating the Fragment and is responsible
+	 * for the layout of the fragment. This layout is defined via the returned
+	 * view.
+	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_tag_list);
-		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	        Bundle savedInstanceState) {
+
 		// set adapter for listview
-		ListView list = (ListView) findViewById(R.id.listView1);
-		list.setAdapter(new ArrayAdapter(this, R.layout.tag_list_item, tagList));
+		ListView list = (ListView) getView().findViewById(R.id.listView1);
+		list.setAdapter(new ArrayAdapter(getActivity(), R.layout.tag_list_item, tagList));
 		// TODO set clicklistener
+
 		updateTagList();
+
+        return inflater.inflate(R.layout.fragment_home, container, false);
 	}
 	
     private void updateTagList() {
@@ -55,22 +64,4 @@ public class TagListActivity extends Activity {
     	tagList = res;
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.tag_list, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 }

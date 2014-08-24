@@ -4,36 +4,19 @@
     android:layout_height="match_parent" >
 
     <!-- The main content view -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+    <fragment android:name="de.juffel.dateTagger.HomeFragment"
+              android:id="@+id/fragment_container"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent" />
 
-        <EditText
-            android:id="@+id/edit_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_message" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="addTag"
-                android:text="@string/button_add_tag" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="updateTagView"
-                android:text="@string/button_update_tag_view" />
-        </LinearLayout>
-    </LinearLayout>
+	</LinearLayout>
+    
     <!-- The navigation drawer -->
 
     <ListView
